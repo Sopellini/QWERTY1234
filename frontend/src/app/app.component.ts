@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-// import {Client} from './client';
-// import {ClientsService} from './clients.service';
-// import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
- /* constructor(
-    private location: Location
-  ) {}*/
-  ngOnInit(){
-
-  }
 
 }

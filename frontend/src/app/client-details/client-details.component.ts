@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -14,7 +14,6 @@ import { Client } from '../client';
 })
 export class ClientDetailsComponent implements OnInit{
 
-  //@Input()
   client: Client;
 
   constructor(

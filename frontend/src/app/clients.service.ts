@@ -25,7 +25,6 @@ export class ClientsService {
       .toPromise()
       .then(response => response.json() as Client)
       .catch(this.handleError);
-    //.then(clients => clients.find(client => client.id === id));
   }
 
   private handleError(error: any): Promise<any> {

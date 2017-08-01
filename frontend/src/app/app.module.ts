@@ -10,7 +10,6 @@ import { ClientsService } from './clients.service';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
-//import { MaterialModule, MdList, MdListItem } from '@angular/material';
 
 
 @NgModule({

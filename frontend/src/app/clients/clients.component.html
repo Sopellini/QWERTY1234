@@ -2,10 +2,7 @@
 
 <ul class="clients">
   <li *ngFor="let client of clients" [routerLink]="['/clientDetails', client.client_id]">
-     <!-- [class.selected]="client === selectedClient"
-      (click)="onSelect(client)">-->
     <span class="badge">{{client.client_id}}</span> {{client.name}} {{client.surname}}
   </li>
 </ul>
-<!--<app-client-details [client]="selectedClient"></app-client-details>-->
 

@@ -10,7 +10,6 @@
 	</parent>
 
 	<artifactId>backend</artifactId>
-	<!--<packaging>jar</packaging>-->
 
 	<dependencies>
 		<dependency>
@@ -18,7 +17,7 @@
 			<artifactId>frontend</artifactId>
 			<version>${project.version}</version>
 			<scope>runtime</scope>
-			<!--<type>zip</type>-->
+
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -46,31 +45,6 @@
 
 	<build>
 		<plugins>
-			<!--<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>unpack</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>unpack</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>com.insurance</groupId>
-									<artifactId>frontend</artifactId>
-									<version>${project.version}</version>
-									<type>zip</type>
-								</artifactItem>
-							</artifactItems>
-							<outputDirectory>${project.build.directory}/classes/static</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>-->
-
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
