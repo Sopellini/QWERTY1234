@@ -1,8 +1,8 @@
 export class Client{
   public client_id: number;
   public name: string;
-  public name2: String;
-  public surname: String;
-  public dob: Date;
+  public name2: string;
+  public surname: string;
+  public dob: string;
   public pesel: number;
 }

@@ -34,11 +34,11 @@ public class Client {
         this.pesel = pesel;
     }
 
-    public int getClient_id() {
+    public int getClientId() {
         return client_id;
     }
 
-    public void setClient_id(int client_id) {
+    public void setClientId(int client_id) {
         this.client_id = client_id;
     }
 

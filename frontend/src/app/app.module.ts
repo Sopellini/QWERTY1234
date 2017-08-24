@@ -8,8 +8,11 @@ import { NavComponent } from './nav/nav.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ClientsService } from './clients.service';
 import { ClientDetailsComponent } from './client-details/client-details.component';
+import { InsurancesComponent } from './insurances/insurances.component';
+import {InsurancesService } from './insurances.service';
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
+
 
 
 @NgModule({
@@ -23,9 +26,10 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
     AppComponent,
     NavComponent,
     ClientsComponent,
-    ClientDetailsComponent
+    ClientDetailsComponent,
+    InsurancesComponent
   ],
-  providers: [ClientsService],
+  providers: [ClientsService, InsurancesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

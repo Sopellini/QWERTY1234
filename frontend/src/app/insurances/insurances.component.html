@@ -1,0 +1,29 @@
+<h1>Polisy</h1>
+
+<div >
+  <table border="1">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Data rozpoczęcia</th>
+      <th>Data zakończenia</th>
+      <th>Rodzaj polisy</th>
+      <th>Suma ubezpieczenia</th>
+      <th>Składka</th>
+      <th>Rodzaj płatności</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let insurance of insurances">
+    <tr>
+      <td>{{insurance.id}}</td>
+      <td>{{insurance.startDate}}</td>
+      <td>{{insurance.endDate}}</td>
+      <td>{{insurance.insuranceType.insuranceType}}</td>
+      <td>{{insurance.insuranceType.insuranceAmount}}</td>
+      <td>{{insurance.insuranceType.cost}}</td>
+      <td>{{insurance.insuranceType.paymentType}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
