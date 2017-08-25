@@ -1,9 +1,6 @@
 package com.insurance.InsuranceApp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -19,19 +16,21 @@ public class Client {
     public String surname;
     public Date dob;
     public Long pesel;
-    /* Foreign keys - to define properly
-    Integer contact_id;
-    Integer insurance_id;*/
+
+    @OneToOne
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
 
     public Client(){}
 
-    public Client(int client_id, String name, String name2, String surname, Date dob, Long pesel){
+    public Client(int client_id, String name, String name2, String surname, Date dob, Long pesel, Contact contact){
         this.client_id = client_id;
         this.name = name;
         this.name2 = name2;
         this.surname = surname;
         this.dob = dob;
         this.pesel = pesel;
+        this.contact = contact;
     }
 
     public int getClientId() {
@@ -80,5 +79,13 @@ public class Client {
 
     public void setPesel(Long pesel) {
         this.pesel = pesel;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }
