@@ -9,6 +9,7 @@ export class ClientsService {
 
   private clientsUrl = '/api/clients';
   private clientDetailsUrl = '/api/clientDetails';
+  private headers = new Headers({'Content-Type':'application/json'});
 
   constructor(private http: Http) { }
 
@@ -24,6 +25,15 @@ export class ClientsService {
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Client)
+      .catch(this.handleError);
+  }
+
+  updateClient(client: Client):Promise<Client>{
+    const url = `${this.clientDetailsUrl}/${client.client_id}`;
+    return this.http
+      .put(url, JSON.stringify(client), {headers: this.headers})
+      .toPromise()
+      .then(() => client)
       .catch(this.handleError);
   }
 

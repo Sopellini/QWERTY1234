@@ -1,5 +1,5 @@
 <div *ngIf="client">
-  <h2>{{client.name}} details!</h2>
+  <h2>{{client.name}} {{client.surname}} details!</h2>
   <table>
     <td>
       <tr>
@@ -65,6 +65,7 @@
 </div>
 <div>
   <button (click)="goBack()">Wstecz</button>
+  <button (click)="save()">Zapisz</button>
 </div>
 
 
