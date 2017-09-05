@@ -1,11 +1,12 @@
 --CREATE DATABASE insurances;
 
-DROP TABLE IF EXISTS Client;
-DROP TABLE IF EXISTS Insurance;
-DROP TABLE IF EXISTS Insurance_Type;
-DROP TABLE IF EXISTS Contact;
-DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Privilige;
+DROP TABLE  Client;
+DROP TABLE  Insurance;
+DROP TABLE  Insurance_Type;
+DROP TABLE  Contact;
+DROP TABLE  Users;
+DROP TABLE  Privilige;
+DROP SEQUENCE contact_seq;
 
 CREATE TABLE Privilige(
 Privilige_ID int,
@@ -23,7 +24,7 @@ CONSTRAINT PrivilegeFK FOREIGN KEY (Privilige_ID) REFERENCES Privilige(Privilige
 );
 
 CREATE TABLE Contact(
-Contact_ID int,
+Contact_ID int NULL,
 Street varchar(255),
 House_Number varchar(10),
 Flat_Number varchar(10),
@@ -67,6 +68,10 @@ CONSTRAINT ContactFK FOREIGN KEY (Contact_ID) REFERENCES Contact(Contact_ID),
 CONSTRAINT InsuranceFK FOREIGN KEY (Insurance_ID) REFERENCES Insurance(Insurance_ID)
 );
 
+CREATE SEQUENCE contact_seq
+ START WITH     2
+ INCREMENT BY   1
+ NOCACHE;
 
 commit;
 
