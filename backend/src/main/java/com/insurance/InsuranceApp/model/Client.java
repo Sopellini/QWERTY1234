@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by Sopel on 2017-05-31.
  */
 @Entity
-public class Client {
+public class Client{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int client_id;
@@ -17,7 +17,7 @@ public class Client {
     public Date dob;
     public Long pesel;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id")
     private Contact contact;
 
@@ -88,4 +88,12 @@ public class Client {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
+
+/*    @Override
+    public String toString(){
+        return String.format(
+                "Client[id=%d, name='%s', name2='%s', surname='%s', dob='%s']",
+                client_id, name, name2, surname, dob
+        );
+    }*/
 }

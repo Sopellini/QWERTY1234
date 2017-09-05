@@ -24,7 +24,6 @@ public class InsuranceController {
     InsuranceRepository insuranceRepository;
 
     @RequestMapping(value = "/insurances", method = RequestMethod.GET)
-    @ResponseBody
     public ResponseEntity allInsurances(){
         Iterable<Insurance> all = insuranceRepository.findAll();
         return new ResponseEntity<>(all, HttpStatus.OK);

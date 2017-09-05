@@ -1,14 +1,17 @@
 package com.insurance.InsuranceApp.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Sopel on 2017-08-25.
  */
 @Entity
-public class Contact {
+public class Contact{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contactSequence")
+    @SequenceGenerator(name="contactSequence", sequenceName = "contact_seqę")
+    @Column(nullable = false)
     public int contact_id;
 
     @Column(name = "house_number")
@@ -24,8 +27,8 @@ public class Contact {
     public String phone2;
     public String email;
 
-    @OneToOne(mappedBy = "contact")
-    private Client client;
+    /*@OneToOne(mappedBy = "contact")
+    private Client client;*/
 
     public Contact(){}
 
@@ -111,4 +114,12 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
+
+/*    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }*/
 }

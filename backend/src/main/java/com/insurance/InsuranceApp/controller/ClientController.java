@@ -1,11 +1,15 @@
 package com.insurance.InsuranceApp.controller;
 
 import com.insurance.InsuranceApp.model.Client;
+import com.insurance.InsuranceApp.model.Contact;
 import com.insurance.InsuranceApp.repository.ClientRepository;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
 
 /**
  * Created by Sopel on 2017-05-31.
@@ -30,14 +34,17 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/clientDetails/{client_id}", method = RequestMethod.PUT)
+    @Transactional
     public ResponseEntity<Client> updateClient(@PathVariable int client_id, @RequestBody Client client){
         System.out.println("Updating client " + client_id);
 
         Client currentClient = clientRepository.findOne(client_id);
+        Contact currentContact = currentClient.getContact();
 
-        if(currentClient == null){
-            System.out.println("Client with id " + client_id + " not found");
-            return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+        if(currentContact == null){
+            currentContact = new Contact();
+            currentClient.setContact(currentContact);
+            clientRepository.save(currentClient);
         }
 
         currentClient.setName(client.getName());
@@ -46,14 +53,7 @@ public class ClientController {
         currentClient.setDob(client.getDob());
         currentClient.setPesel(client.getPesel());
 
-        currentClient.getContact().setStreet(client.getContact().getStreet());
-        currentClient.getContact().setHouseNumber(client.getContact().getHouseNumber());
-        currentClient.getContact().setFlatNumber(client.getContact().getFlatNumber());
-        currentClient.getContact().setPostcode(client.getContact().getPostcode());
-        currentClient.getContact().setCity(client.getContact().getCity());
-        currentClient.getContact().setPhone(client.getContact().getPhone());
-        currentClient.getContact().setPhone2(client.getContact().getPhone2());
-        currentClient.getContact().setEmail(client.getContact().getEmail());
+        currentClient.setContact(client.getContact());
 
         clientRepository.save(currentClient);
         return new ResponseEntity<Client>(currentClient, HttpStatus.OK);
