@@ -70,8 +70,7 @@ CONSTRAINT InsuranceFK FOREIGN KEY (Insurance_ID) REFERENCES Insurance(Insurance
 
 CREATE SEQUENCE contact_seq
  START WITH     2
- INCREMENT BY   1
- NOCACHE;
+ INCREMENT BY   1;
 
 commit;
 

@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Contact{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contactSequence")
-    @SequenceGenerator(name="contactSequence", sequenceName = "contact_seqę")
+    @SequenceGenerator(name="contactSequence", sequenceName = "contact_seq")
     @Column(nullable = false)
     public int contact_id;
 

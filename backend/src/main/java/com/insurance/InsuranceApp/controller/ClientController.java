@@ -3,7 +3,6 @@ package com.insurance.InsuranceApp.controller;
 import com.insurance.InsuranceApp.model.Client;
 import com.insurance.InsuranceApp.model.Contact;
 import com.insurance.InsuranceApp.repository.ClientRepository;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +29,15 @@ public class ClientController {
     @RequestMapping(value = "/clientDetails/{client_id}", method = RequestMethod.GET)
     public ResponseEntity getClientById(@PathVariable int client_id){
         Client client = clientRepository.findOne(client_id);
+
+        if(client == null){
+            return new ResponseEntity<>("Nie znaleziono klienta o ID = " + client_id, HttpStatus.NOT_FOUND);
+        }
+
+        if(client.getContact() == null){
+            Contact contact = new Contact();
+            client.setContact(contact);
+        }
         return new ResponseEntity<>(client, HttpStatus.OK);
     }
 
@@ -39,13 +47,6 @@ public class ClientController {
         System.out.println("Updating client " + client_id);
 
         Client currentClient = clientRepository.findOne(client_id);
-        Contact currentContact = currentClient.getContact();
-
-        if(currentContact == null){
-            currentContact = new Contact();
-            currentClient.setContact(currentContact);
-            clientRepository.save(currentClient);
-        }
 
         currentClient.setName(client.getName());
         currentClient.setName2(client.getName2());
