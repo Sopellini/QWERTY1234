@@ -2,13 +2,12 @@ package com.insurance.InsuranceApp.controller;
 
 import com.insurance.InsuranceApp.model.Client;
 import com.insurance.InsuranceApp.model.Contact;
-import com.insurance.InsuranceApp.repository.ClientRepository;
+import com.insurance.InsuranceApp.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 
 /**
  * Created by Sopel on 2017-05-31.
@@ -17,18 +16,18 @@ import javax.transaction.Transactional;
 @RequestMapping("/api")
 public class ClientController {
 
-    @Autowired
-    private ClientRepository clientRepository;
+   @Autowired
+    ClientService clientService;
 
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
     public ResponseEntity getAllClients(){
-        Iterable<Client> all = clientRepository.findAll();
-        return new ResponseEntity<>(all, HttpStatus.OK);
+        Iterable<Client> clients = clientService.getAllClients();
+        return new ResponseEntity<>(clients, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/clientDetails/{client_id}", method = RequestMethod.GET)
     public ResponseEntity getClientById(@PathVariable int client_id){
-        Client client = clientRepository.findOne(client_id);
+        Client client = clientService.getClientDetails(client_id);
 
         if(client == null){
             return new ResponseEntity<>("Nie znaleziono klienta o ID = " + client_id, HttpStatus.NOT_FOUND);
@@ -42,22 +41,30 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/clientDetails/{client_id}", method = RequestMethod.PUT)
-    @Transactional
     public ResponseEntity<Client> updateClient(@PathVariable int client_id, @RequestBody Client client){
-        System.out.println("Updating client " + client_id);
+        Client updatedClient = clientService.updateClient(client_id, client);
+        return new ResponseEntity<>(updatedClient, HttpStatus.OK);
+    }
 
-        Client currentClient = clientRepository.findOne(client_id);
+    @RequestMapping(value="/clients", method = RequestMethod.POST)
+    public ResponseEntity createClient(@RequestBody Client client) {
 
-        currentClient.setName(client.getName());
-        currentClient.setName2(client.getName2());
-        currentClient.setSurname(client.getSurname());
-        currentClient.setDob(client.getDob());
-        currentClient.setPesel(client.getPesel());
+        if(clientService.isClientExist(client)){
+            return new ResponseEntity<>("Klient już istnieje.", HttpStatus.CONFLICT);
+        }
 
-        currentClient.setContact(client.getContact());
+        if(client.getPesel() == null){
+            return new ResponseEntity<>("Proszę podać pesel.", HttpStatus.NOT_FOUND);
+        }
 
-        clientRepository.save(currentClient);
-        return new ResponseEntity<Client>(currentClient, HttpStatus.OK);
+        Client newClient = clientService.createClient(client);
+        return new ResponseEntity<>(newClient, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/clientDetails/{client_id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteClient(@PathVariable int client_id){
+        clientService.deleteClient(client_id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
 }

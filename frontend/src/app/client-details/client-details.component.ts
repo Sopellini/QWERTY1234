@@ -32,8 +32,13 @@ export class ClientDetailsComponent implements OnInit{
     this.location.back();
   }
 
-  save(): void {
+  saveClient(): void {
     this.clientService.updateClient(this.client)
+      .then(() => this.goBack());
+  }
+
+  deleteClient(): void {
+    this.clientService.deleteClient(this.client.client_id)
       .then(() => this.goBack());
   }
 

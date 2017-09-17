@@ -1,11 +1,8 @@
-<div *ngIf="client">
-  <h2>{{client.name}} {{client.surname}} details!</h2>
+<div>
+  <h2>Wprowadź dane nowego klienta:</h2>
+  <br />
   <table>
     <td>
-      <tr>
-        <td>ID:</td>
-        <td>{{client.client_id}}</td>
-      </tr>
       <tr>
         <td>Imię:</td>
         <td><input [(ngModel)]="client.name" placeholder="Imię"/></td>
@@ -63,14 +60,5 @@
     </td>
   </table>
   <button (click)="goBack()">Wstecz</button>
-  <button (click)="saveClient()">Zapisz</button>
-  <button (click)="deleteClient()">Usuń tego klienta</button>
+  <button (click)="create()">Zapisz</button>
 </div>
-<!--
-<div ng-show="">
-  <h1>
-   //Przechwyć error z rest-a i wyświetl stosowny komunikat
-  </h1>
-
-</div>
--->
