@@ -1,6 +1,7 @@
 package com.insurance.InsuranceApp.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * Created by Sopel on 2017-08-13.
@@ -77,12 +78,34 @@ public class InsuranceType {
         this.paymentType = paymentType;
     }
 
-    /*@OneToOne(mappedBy = "insuranceType")
-    public Insurance getInsurance(){
-        return insurance;
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("InsuranceType{");
+        sb.append("insuranceTypeId=").append(insuranceTypeId);
+        sb.append(", insuranceType='").append(insuranceType).append('\'');
+        sb.append(", insuranceAmount=").append(insuranceAmount);
+        sb.append(", cost=").append(cost);
+        sb.append(", paymentType='").append(paymentType).append('\'');
+        sb.append(", insurance=").append(insurance);
+        sb.append('}');
+        return sb.toString();
     }
 
-    public void setInsurance(Insurance insurance){
-        this.insurance = insurance;
-    }*/
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof InsuranceType)) return false;
+        InsuranceType that = (InsuranceType) o;
+        return getInsuranceTypeId() == that.getInsuranceTypeId() &&
+                Double.compare(that.getInsuranceAmount(), getInsuranceAmount()) == 0 &&
+                Double.compare(that.getCost(), getCost()) == 0 &&
+                Objects.equals(getInsuranceType(), that.getInsuranceType()) &&
+                Objects.equals(getPaymentType(), that.getPaymentType()) &&
+                Objects.equals(insurance, that.insurance);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getInsuranceTypeId(), getInsuranceType(), getInsuranceAmount(), getCost(), getPaymentType(), insurance);
+    }
 }

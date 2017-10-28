@@ -4,13 +4,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  * Created by Sopel on 2017-05-31.
  */
 @Entity
-public class Client{
+public class Client implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int client_id;
@@ -92,11 +94,36 @@ public class Client{
         this.contact = contact;
     }
 
-/*    @Override
-    public String toString(){
-        return String.format(
-                "Client[id=%d, name='%s', name2='%s', surname='%s', dob='%s']",
-                client_id, name, name2, surname, dob
-        );
-    }*/
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Client{");
+        sb.append("client_id=").append(client_id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", name2='").append(name2).append('\'');
+        sb.append(", surname='").append(surname).append('\'');
+        sb.append(", dob=").append(dob);
+        sb.append(", pesel=").append(pesel);
+        sb.append(", contact=").append(contact);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+        Client client = (Client) o;
+        return client_id == client.client_id &&
+                Objects.equals(getName(), client.getName()) &&
+                Objects.equals(getName2(), client.getName2()) &&
+                Objects.equals(getSurname(), client.getSurname()) &&
+                Objects.equals(getDob(), client.getDob()) &&
+                Objects.equals(getPesel(), client.getPesel()) &&
+                Objects.equals(getContact(), client.getContact());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(client_id, getName(), getName2(), getSurname(), getDob(), getPesel(), getContact());
+    }
 }
