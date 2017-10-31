@@ -31,12 +31,12 @@ public class InsuranceType {
 
     public InsuranceType(){}
 
-    public InsuranceType(String insuranceType, double insuranceAmount, double cost, String paymentType) {
+/*    public InsuranceType(String insuranceType, double insuranceAmount, double cost, String paymentType) {
         this.insuranceType = insuranceType;
         this.insuranceAmount = insuranceAmount;
         this.cost = cost;
         this.paymentType = paymentType;
-    }
+    }*/
 
     public int getInsuranceTypeId() {
         return insuranceTypeId;
@@ -100,12 +100,11 @@ public class InsuranceType {
                 Double.compare(that.getInsuranceAmount(), getInsuranceAmount()) == 0 &&
                 Double.compare(that.getCost(), getCost()) == 0 &&
                 Objects.equals(getInsuranceType(), that.getInsuranceType()) &&
-                Objects.equals(getPaymentType(), that.getPaymentType()) &&
-                Objects.equals(insurance, that.insurance);
+                Objects.equals(getPaymentType(), that.getPaymentType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getInsuranceTypeId(), getInsuranceType(), getInsuranceAmount(), getCost(), getPaymentType(), insurance);
+        return Objects.hash(getInsuranceTypeId(), getInsuranceType(), getInsuranceAmount(), getCost(), getPaymentType());
     }
 }

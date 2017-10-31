@@ -72,6 +72,10 @@ CREATE SEQUENCE contact_seq
  START WITH     2
  INCREMENT BY   1;
 
+ CREATE SEQUENCE client_seq
+ START WITH     3
+ INCREMENT BY   1;
+
 commit;
 
 --exit;

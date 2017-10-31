@@ -28,8 +28,6 @@ public class Contact{
     public String phone2;
     public String email;
 
-    /*@OneToOne(mappedBy = "contact")
-    private Client client;*/
 
     public Contact(){}
 

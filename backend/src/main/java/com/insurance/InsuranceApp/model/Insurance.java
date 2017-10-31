@@ -74,7 +74,6 @@ public class Insurance implements Serializable{
         sb.append("id=").append(id);
         sb.append(", startDate=").append(startDate);
         sb.append(", endDate=").append(endDate);
-        sb.append(", insuranceType=").append(insuranceType);
         sb.append('}');
         return sb.toString();
     }

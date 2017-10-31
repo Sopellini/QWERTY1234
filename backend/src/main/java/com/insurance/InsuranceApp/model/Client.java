@@ -14,7 +14,8 @@ import java.util.Objects;
 @Entity
 public class Client implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clientSequence")
+    @SequenceGenerator(name="clientSequence", sequenceName = "client_seq")
     public int client_id;
     public String name;
     public String name2;
