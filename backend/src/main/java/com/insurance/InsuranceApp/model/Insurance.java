@@ -21,9 +21,13 @@ public class Insurance implements Serializable{
     @Column(name = "dateend")
     private Date endDate;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "ins_type_id")
     private InsuranceType insuranceType;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
 
     public Insurance(){}
@@ -68,6 +72,14 @@ public class Insurance implements Serializable{
         this.insuranceType = insuranceType;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Insurance{");
@@ -86,11 +98,12 @@ public class Insurance implements Serializable{
         return getId() == insurance.getId() &&
                 Objects.equals(getStartDate(), insurance.getStartDate()) &&
                 Objects.equals(getEndDate(), insurance.getEndDate()) &&
-                Objects.equals(getInsuranceType(), insurance.getInsuranceType());
+                Objects.equals(getInsuranceType(), insurance.getInsuranceType()) &&
+                Objects.equals(getClient(), insurance.getClient());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getStartDate(), getEndDate(), getInsuranceType());
+        return Objects.hash(getId(), getStartDate(), getEndDate(), getInsuranceType(), getClient());
     }
 }

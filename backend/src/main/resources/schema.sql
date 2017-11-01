@@ -50,6 +50,7 @@ Insurance_ID int,
 DateStart date,
 DateEnd date,
 Ins_Type_ID int,
+Client_ID int,
 PRIMARY KEY (Insurance_ID),
 CONSTRAINT InsuranceTypeFK FOREIGN KEY (Ins_Type_ID) REFERENCES Insurance_Type(Ins_Type_ID)
 );

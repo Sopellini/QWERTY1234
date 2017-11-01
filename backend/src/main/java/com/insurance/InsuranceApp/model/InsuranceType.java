@@ -26,17 +26,9 @@ public class InsuranceType {
     @Column(name = "payment_type")
     private String paymentType;
 
-    @OneToOne(mappedBy = "insuranceType")
-    private Insurance insurance;
 
     public InsuranceType(){}
 
-/*    public InsuranceType(String insuranceType, double insuranceAmount, double cost, String paymentType) {
-        this.insuranceType = insuranceType;
-        this.insuranceAmount = insuranceAmount;
-        this.cost = cost;
-        this.paymentType = paymentType;
-    }*/
 
     public int getInsuranceTypeId() {
         return insuranceTypeId;
@@ -86,7 +78,6 @@ public class InsuranceType {
         sb.append(", insuranceAmount=").append(insuranceAmount);
         sb.append(", cost=").append(cost);
         sb.append(", paymentType='").append(paymentType).append('\'');
-        sb.append(", insurance=").append(insurance);
         sb.append('}');
         return sb.toString();
     }

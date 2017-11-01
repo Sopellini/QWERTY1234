@@ -1,4 +1,3 @@
-
 import {Contact} from "./contact";
 
 export class Client{

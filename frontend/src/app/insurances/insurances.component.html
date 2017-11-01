@@ -11,6 +11,7 @@
       <th>Suma ubezpieczenia</th>
       <th>Składka</th>
       <th>Rodzaj płatności</th>
+      <th>Klient</th>
     </tr>
     </thead>
     <tbody *ngFor="let insurance of insurances">
@@ -22,6 +23,7 @@
       <td>{{insurance.insuranceType.insuranceAmount}}</td>
       <td>{{insurance.insuranceType.cost}}</td>
       <td>{{insurance.insuranceType.paymentType}}</td>
+      <td [routerLink]="['/clientDetails', insurance.client.client_id]"><u>{{insurance.client.name}} {{insurance.client.name2}} {{insurance.client.surname}}</u></td>
     </tr>
     </tbody>
   </table>

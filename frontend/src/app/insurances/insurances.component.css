@@ -6,3 +6,9 @@ table, th, td {
 th{
   font-weight:bold;
 }
+u{
+  color: darkblue;
+}
+u:hover{
+  cursor: pointer;
+}
