@@ -13,6 +13,8 @@ import { InsurancesComponent } from './insurances/insurances.component';
 import {InsurancesService } from './insurances.service';
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
+import {InsurancesSearchPipe} from "./insurances/insurancesSearch.pipe";
+import {InsuranceOrderPipe} from "./insurances/insurancesOrder.pipe";
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
     NavComponent,
     ClientsComponent,
     ClientDetailsComponent,
-    InsurancesComponent
+    InsurancesComponent,
+    InsurancesSearchPipe,
+    InsuranceOrderPipe
   ],
   providers: [ClientsService, InsurancesService],
   bootstrap: [AppComponent]

@@ -11,6 +11,10 @@ import {InsurancesService} from "../insurances.service";
 export class InsurancesComponent implements OnInit {
 
   insurances: Insurance[];
+  isDesc: boolean = false;
+  direction: number;
+  column: string;
+  searchText: string;
 
   constructor(
     private router: Router,
@@ -24,5 +28,11 @@ export class InsurancesComponent implements OnInit {
   getInsurances(): void{
     this.insuranceService.getInsurances().then(insurances => this.insurances = insurances);
   }
+
+  sort(property){
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = property;
+    this.direction = this.isDesc ? 1 : -1;
+  };
 
 }
