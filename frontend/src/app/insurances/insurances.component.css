@@ -3,6 +3,9 @@ table, th, td {
   padding: 1px 3px;
   font: 15px Verdana;
 }
+p-dataTable p-column{
+  border: solid 2px #CCC;
+}
 th{
   font-weight:bold;
 }
@@ -10,5 +13,8 @@ u{
   color: darkblue;
 }
 u:hover{
+  cursor: pointer;
+}
+.pointer{
   cursor: pointer;
 }

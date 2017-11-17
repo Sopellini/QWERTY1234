@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {Insurance} from "../insurance";
 import {InsurancesService} from "../insurances.service";
 
@@ -11,28 +10,32 @@ import {InsurancesService} from "../insurances.service";
 export class InsurancesComponent implements OnInit {
 
   insurances: Insurance[];
-  isDesc: boolean = false;
-  direction: number;
-  column: string;
-  searchText: string;
+  loading: boolean;
+  cols: any[];
 
   constructor(
-    private router: Router,
     private insuranceService: InsurancesService
   ) { }
 
   ngOnInit() {
-    this.getInsurances();
+    this.loading = true;
+    setTimeout(() => {
+      this.getInsurances();
+      this.loading = false;
+      this.cols = [
+        {field: 'id', header: 'ID'},
+        {field: 'startDate', header: 'Data rozpoczęcia'},
+        {field: 'endDate', header: 'Data końca'},
+        {field: 'insuranceType.insuranceType', header: 'Rodzaj polisy'},
+        {field: 'insuranceType.insuranceAmount', header: 'Suma ubezpieczenia'},
+        {field: 'insuranceType.cost', header: 'Składka'},
+        {field: 'insuranceType.paymentType', header: 'Rodzaj płatności'}
+      ];
+    }, 1000);
   }
 
   getInsurances(): void{
     this.insuranceService.getInsurances().then(insurances => this.insurances = insurances);
   }
-
-  sort(property){
-    this.isDesc = !this.isDesc; //change the direction
-    this.column = property;
-    this.direction = this.isDesc ? 1 : -1;
-  };
 
 }

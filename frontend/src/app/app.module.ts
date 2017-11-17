@@ -13,8 +13,7 @@ import { InsurancesComponent } from './insurances/insurances.component';
 import {InsurancesService } from './insurances.service';
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
-import {InsurancesSearchPipe} from "./insurances/insurancesSearch.pipe";
-import {InsuranceOrderPipe} from "./insurances/insurancesOrder.pipe";
+import {DataTableModule, SharedModule} from "primeng/primeng";
 
 
 @NgModule({
@@ -22,7 +21,9 @@ import {InsuranceOrderPipe} from "./insurances/insurancesOrder.pipe";
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DataTableModule,
+    SharedModule
   ],
   declarations: [
     AppComponent,
@@ -30,9 +31,7 @@ import {InsuranceOrderPipe} from "./insurances/insurancesOrder.pipe";
     NavComponent,
     ClientsComponent,
     ClientDetailsComponent,
-    InsurancesComponent,
-    InsurancesSearchPipe,
-    InsuranceOrderPipe
+    InsurancesComponent
   ],
   providers: [ClientsService, InsurancesService],
   bootstrap: [AppComponent]

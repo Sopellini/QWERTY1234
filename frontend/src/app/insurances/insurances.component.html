@@ -1,47 +1,15 @@
 <h1>Polisy</h1>
-<div class="form-group">
-  <div class="col-md-3" >
-    <input type="text" [(ngModel)]="searchText" class="form-control" placeholder="Wyszukaj rodzaj polisy" />
-  </div>
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+  <input #gf type="text" pInputText size="50" placeholder="Szukaj globalnie">
 </div>
 <div >
-  <table class="table table-responsive table-hover" border="1">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th class="pointer" (click)="sort('startDate')"> Data rozpoczęcia
-        <i class="fa" [ngClass]="{'fa-sort': column != 'startDate', 'fa-sort-asc': (column == 'startDate' && isDesc), 'fa-sort-desc': (column == 'startDate' && !isDesc) }" aria-hidden="true"> </i>
-      </th>
-      <th class="pointer" (click)="sort('endDate')"> Data zakończenia
-        <i class="fa" [ngClass]="{'fa-sort': column != 'endDate', 'fa-sort-asc': (column == 'endDate' && isDesc), 'fa-sort-desc': (column == 'endDate' && !isDesc) }" aria-hidden="true"> </i>
-      </th>
-      <th class="pointer" (click)="sort('insuranceType:insuranceType')">Rodzaj polisy
-        <i class="fa" [ngClass]="{'fa-sort': column != 'insuranceType:insuranceType', 'fa-sort-asc': (column == 'insuranceType:insuranceType' && isDesc), 'fa-sort-desc': (column == 'insuranceType:insuranceType' && !isDesc) }" aria-hidden="true"> </i>
-      </th>
-      <th class="pointer" (click)="sort('insuranceAmount')">Suma ubezpieczenia
-        <i class="fa" [ngClass]="{'fa-sort': column != 'insuranceAmount', 'fa-sort-asc': (column == 'insuranceAmount' && isDesc), 'fa-sort-desc': (column == 'insuranceAmount' && !isDesc) }" aria-hidden="true"> </i>
-      </th>
-      <th class="pointer" (click)="sort('insuranceType.cost')">Składka
-        <i class="fa" [ngClass]="{'fa-sort': column != 'insuranceType.cost', 'fa-sort-asc': (column == 'insuranceType.cost' && isDesc), 'fa-sort-desc': (column == 'insuranceType.cost' && !isDesc) }" aria-hidden="true"> </i>
-      </th>
-      <th class="pointer" (click)="sort('paymentType')">Rodzaj płatności
-        <i class="fa" [ngClass]="{'fa-sort': column != 'paymentType', 'fa-sort-asc': (column == 'paymentType' && isDesc), 'fa-sort-desc': (column == 'paymentType' && !isDesc) }" aria-hidden="true"> </i>
-      </th>
-      <th>Klient</th>
-    </tr>
-    </thead>
-    <tbody *ngFor="let insurance of insurances | insuranceSearch: searchText | insuranceOrderBy: {property: column, direction: direction}" >
-    <tr>
-      <td>{{insurance.id}}</td>
-      <td>{{insurance.startDate}}</td>
-      <td>{{insurance.endDate}}</td>
-      <td>{{insurance.insuranceType.insuranceType}}</td>
-      <td>{{insurance.insuranceType.insuranceAmount}}</td>
-      <td>{{insurance.insuranceType.cost}}</td>
-      <td>{{insurance.insuranceType.paymentType}}</td>
-      <td [routerLink]="['/clientDetails', insurance.client.client_id]"><u>{{insurance.client.name}} {{insurance.client.name2}} {{insurance.client.surname}}</u></td>
-    </tr>
-    </tbody>
-  </table>
-
+  <p-dataTable [value]="insurances" [loading]="loading" loadingIcon="fa-spinner" [globalFilter]="gf">
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+    <p-column field="client.surname" header="Klient" [sortable]="true" [filter]="true" filterMatchMode="contains" filterPlaceholder="Szukaj (nazwisko)">
+      <ng-template let-row="rowData" pTemplate="body">
+        <a [routerLink]="['/clientDetails', row.client.client_id]">{{row.client.name}} {{row.client.name2}} {{row.client.surname}}</a>
+      </ng-template>
+    </p-column>
+  </p-dataTable>
 </div>
