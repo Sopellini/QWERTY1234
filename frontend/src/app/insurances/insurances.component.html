@@ -5,7 +5,7 @@
 </div>
 <div >
   <p-dataTable [value]="insurances" [loading]="loading" loadingIcon="fa-spinner" [globalFilter]="gf">
-    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true"></p-column>
     <p-column field="client.surname" header="Klient" [sortable]="true" [filter]="true" filterMatchMode="contains" filterPlaceholder="Szukaj (nazwisko)">
       <ng-template let-row="rowData" pTemplate="body">
         <a [routerLink]="['/clientDetails', row.client.client_id]">{{row.client.name}} {{row.client.name2}} {{row.client.surname}}</a>
