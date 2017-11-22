@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
+
 
 /**
  * Created by Sopel on 2017-05-31.
@@ -65,6 +68,12 @@ public class ClientController {
     public ResponseEntity deleteClient(@PathVariable int client_id){
         clientService.deleteClient(client_id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "/clientBirthdays", method = RequestMethod.GET)
+    public ResponseEntity getIncomingClientBirthdays(){
+        List<Client> clientsWithIncomingBirthday = clientService.getIncomingClientBirthdays();
+        return new ResponseEntity<>(clientsWithIncomingBirthday, HttpStatus.OK);
     }
 
 }

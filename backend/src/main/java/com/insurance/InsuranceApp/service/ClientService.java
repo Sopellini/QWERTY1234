@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 /**
  * Created by Sopel on 2017-09-03.
@@ -61,5 +66,26 @@ public class ClientService {
             return true;
         }
         return false;
+    }
+
+    public List<Client> getIncomingClientBirthdays(){
+        Iterable<Client> clients = getAllClients();
+        List<Client> clientsWithIncomingBirthday = new ArrayList<>();
+        LocalDate birthday, currentDate;
+        currentDate = LocalDate.now();
+
+        for (Client client : clients) {
+            try {
+                birthday = client.getDob().toLocalDate().withYear(currentDate.getYear());
+                long period = ChronoUnit.DAYS.between(currentDate, birthday);
+                if (period <= 7 && period > 0) {
+                    clientsWithIncomingBirthday.add(client);
+                }
+            }catch(NullPointerException npe){
+                System.out.println("Klient " + client.name + " " + client.surname + " nie ma wprowadzonej daty urodzenia.");
+            }
+        }
+
+        return clientsWithIncomingBirthday;
     }
 }
