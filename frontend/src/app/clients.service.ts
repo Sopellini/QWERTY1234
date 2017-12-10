@@ -8,6 +8,7 @@ import { Client } from './client';
 export class ClientsService {
 
   private clientsUrl = '/api/clients';
+  private clientsBirthdayUrl = '/api/clientBirthdays';
   private clientDetailsUrl = '/api/clientDetails';
   private headers = new Headers({'Content-Type':'application/json'});
 
@@ -16,6 +17,13 @@ export class ClientsService {
 
   getClients(): Promise<Client[]>{
     return this.http.get(this.clientsUrl)
+      .toPromise()
+      .then(response => response.json() as Client[])
+      .catch(this.handleError);
+  }
+
+  getClientsBirthday(): Promise<Client[]>{
+    return this.http.get(this.clientsBirthdayUrl)
       .toPromise()
       .then(response => response.json() as Client[])
       .catch(this.handleError);

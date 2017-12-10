@@ -5,8 +5,10 @@ import {AddClientComponent} from "../add-client/add-client.component";
 import {ClientsComponent} from '../clients/clients.component';
 import {ClientDetailsComponent} from "../client-details/client-details.component";
 import {InsurancesComponent} from "../insurances/insurances.component";
+import {HomeComponent} from "../home/home.component";
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'addClient', component: AddClientComponent},
   {path: 'clients', component: ClientsComponent},
   {path: 'clientDetails/:client_id', component: ClientDetailsComponent},

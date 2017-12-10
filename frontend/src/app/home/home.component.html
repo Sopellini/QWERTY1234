@@ -1,3 +1,22 @@
-<p>
-  home works!
-</p>
+<div [ngWidgetContainer]="{'resizeable': false, 'margins': [5, 10]}">
+  <div [ngWidget] >
+    <div class="title">Urodziny</div>
+    <div *ngIf="clients.length > 0; then displayClients else displayMessage">here is ignored</div>
+
+    <ng-template #displayClients>
+    <p *ngFor="let client of clients" (click)="showDialog(client)">
+      <a>{{client.name}} {{client.name2}} {{client.surname}}</a>
+    </p>
+    </ng-template>
+    <ng-template #displayMessage>Żaden z klientów nie obchodzi urodzin w najbliższym tygodniu.</ng-template>
+  </div>
+</div>
+<div>
+<p-dialog header="Wyślij życzenia" [(visible)]="display" modal="modal">
+  {{client.name}} {{client.name2}} {{client.surname}} obchodzi w tym tygodniu urodziny.
+  Aby wysłać życzenia kliknij przycisk.
+<br>
+  <button *ngIf="display" (click)="sendEmail()">Wyślij e-mail</button>
+</p-dialog>
+</div>
+

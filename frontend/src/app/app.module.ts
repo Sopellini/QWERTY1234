@@ -11,9 +11,13 @@ import { ClientsService } from './clients.service';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { InsurancesComponent } from './insurances/insurances.component';
 import {InsurancesService } from './insurances.service';
+import {HomeComponent} from "./home/home.component";
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
-import {DataTableModule, SharedModule} from "primeng/primeng";
+import {DataTableModule, SharedModule, DataGridModule, DialogModule, ButtonModule} from "primeng/primeng";
+import {NgDraggableWidgetModule} from "ngx-draggable-widget";
+import {ModalModule} from "ngx-bootstrap";
+import {EmailService} from "./email.service";
 
 
 @NgModule({
@@ -23,7 +27,12 @@ import {DataTableModule, SharedModule} from "primeng/primeng";
     HttpModule,
     AppRoutingModule,
     DataTableModule,
-    SharedModule
+    SharedModule,
+    DataGridModule,
+    DialogModule,
+    ButtonModule,
+    NgDraggableWidgetModule,
+    ModalModule
   ],
   declarations: [
     AppComponent,
@@ -31,9 +40,10 @@ import {DataTableModule, SharedModule} from "primeng/primeng";
     NavComponent,
     ClientsComponent,
     ClientDetailsComponent,
-    InsurancesComponent
+    InsurancesComponent,
+    HomeComponent
   ],
-  providers: [ClientsService, InsurancesService],
+  providers: [ClientsService, InsurancesService, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,17 @@
+.widget-container {
+  background-color: white;
+}
+.title{
+  background-color: dimgray;
+  color: whitesmoke;
+}
+.widget{
+  background-color: lightgray;
+  color: black;
+}
+a:hover{
+  cursor: pointer;
+}
+.pointer{
+  cursor: pointer;
+}
