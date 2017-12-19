@@ -8,7 +8,7 @@
     <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true"></p-column>
     <p-column field="client.surname" header="Klient" [sortable]="true" [filter]="true" filterMatchMode="contains" filterPlaceholder="Szukaj (nazwisko)">
       <ng-template let-row="rowData" pTemplate="body">
-        <a [routerLink]="['/clientDetails', row.client.client_id]">{{row.client.name}} {{row.client.name2}} {{row.client.surname}}</a>
+        <a [routerLink]="['/clientDetails', row.client.clientId]">{{row.client.name}} {{row.client.name2}} {{row.client.surname}}</a>
       </ng-template>
     </p-column>
   </p-dataTable>

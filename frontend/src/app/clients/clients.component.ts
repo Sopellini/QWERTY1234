@@ -33,7 +33,7 @@ export class ClientsComponent implements OnInit {
   }
 
   goToDetail(): void{
-    this.router.navigate(['/clientDetails', this.selectedClient.client_id]);
+    this.router.navigate(['/clientDetails', this.selectedClient.clientId]);
   }
 
 }

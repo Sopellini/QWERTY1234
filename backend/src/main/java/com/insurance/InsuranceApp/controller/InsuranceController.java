@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 /**
  * Created by Sopel on 2017-08-13.
@@ -23,9 +25,7 @@ public class InsuranceController {
 
     @RequestMapping(value = "/insurances", method = RequestMethod.GET)
     public ResponseEntity allInsurances(){
-        Iterable<Insurance> allInurances = insuranceService.getAllInsurances();
+        List<Insurance> allInurances = insuranceService.getAllInsurances();
         return new ResponseEntity<>(allInurances, HttpStatus.OK);
     }
-
-
 }

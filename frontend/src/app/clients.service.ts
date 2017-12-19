@@ -29,8 +29,8 @@ export class ClientsService {
       .catch(this.handleError);
   }
 
-  getClient(client_id: number): Promise<Client>{
-    const url = `${this.clientDetailsUrl}/${client_id}`;
+  getClient(clientId: number): Promise<Client>{
+    const url = `${this.clientDetailsUrl}/${clientId}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Client)
@@ -38,7 +38,7 @@ export class ClientsService {
   }
 
   updateClient(client: Client):Promise<Client>{
-    const url = `${this.clientDetailsUrl}/${client.client_id}`;
+    const url = `${this.clientDetailsUrl}/${client.clientId}`;
     return this.http
       .put(url, JSON.stringify(client), {headers: this.headers})
       .toPromise()
@@ -54,8 +54,8 @@ export class ClientsService {
       .catch(this.handleError);
   }
 
-  deleteClient(client_id: number): Promise<Client>{
-    const url = `${this.clientDetailsUrl}/${client_id}`;
+  deleteClient(clientId: number): Promise<Client>{
+    const url = `${this.clientDetailsUrl}/${clientId}`;
     return this.http
       .delete(url, {headers: this.headers})
       .toPromise()

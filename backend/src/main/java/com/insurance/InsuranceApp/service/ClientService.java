@@ -22,8 +22,10 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public Iterable<Client> getAllClients(){
-        return clientRepository.findAll();
+    public List<Client> getAllClients(){
+        List<Client> listOfClients = new ArrayList<>();
+        clientRepository.findAll().forEach(listOfClients::add);
+        return listOfClients;
     }
 
     public Client getClientDetails(int id){
@@ -68,8 +70,9 @@ public class ClientService {
         return false;
     }
 
+    //TODO: zamiana try-catch na bardziej elegancką obsługę NPE
     public List<Client> getIncomingClientBirthdays(){
-        Iterable<Client> clients = getAllClients();
+        List<Client> clients = getAllClients();
         List<Client> clientsWithIncomingBirthday = new ArrayList<>();
         LocalDate birthday, currentDate;
         currentDate = LocalDate.now();
@@ -82,7 +85,7 @@ public class ClientService {
                     clientsWithIncomingBirthday.add(client);
                 }
             }catch(NullPointerException npe){
-                System.out.println("Klient " + client.name + " " + client.surname + " nie ma wprowadzonej daty urodzenia.");
+                System.out.println("Klient " + client.getName() + " " + client.getSurname() + " nie ma wprowadzonej daty urodzenia.");
             }
         }
 

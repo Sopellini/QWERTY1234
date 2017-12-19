@@ -13,20 +13,20 @@ public class Contact{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contactSequence")
     @SequenceGenerator(name="contactSequence", sequenceName = "contact_seq")
     @Column(nullable = false)
-    public int contact_id;
+    private int contact_id;
 
     @Column(name = "house_number")
-    public String houseNumber;
+    private String houseNumber;
 
     @Column(name = "flat_number")
-    public String flatNumber;
+    private String flatNumber;
 
-    public String street;
-    public String postcode;
-    public String city;
-    public String phone;
-    public String phone2;
-    public String email;
+    private String street;
+    private String postcode;
+    private String city;
+    private String phone;
+    private String phone2;
+    private String email;
 
 
     public Contact(){}

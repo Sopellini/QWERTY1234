@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,16 +25,16 @@ public class ClientController {
 
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
     public ResponseEntity getAllClients(){
-        Iterable<Client> clients = clientService.getAllClients();
+        List<Client> clients = clientService.getAllClients();
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/clientDetails/{client_id}", method = RequestMethod.GET)
-    public ResponseEntity getClientById(@PathVariable int client_id){
-        Client client = clientService.getClientDetails(client_id);
+    @RequestMapping(value = "/clientDetails/{clientId}", method = RequestMethod.GET)
+    public ResponseEntity getClientById(@PathVariable int clientId){
+        Client client = clientService.getClientDetails(clientId);
 
         if(client == null){
-            return new ResponseEntity<>("Nie znaleziono klienta o ID = " + client_id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Nie znaleziono klienta o ID = " + clientId, HttpStatus.NOT_FOUND);
         }
 
         if(client.getContact() == null){
@@ -43,9 +44,9 @@ public class ClientController {
         return new ResponseEntity<>(client, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/clientDetails/{client_id}", method = RequestMethod.PUT)
-    public ResponseEntity<Client> updateClient(@PathVariable int client_id, @RequestBody Client client){
-        Client updatedClient = clientService.updateClient(client_id, client);
+    @RequestMapping(value = "/clientDetails/{clientId}", method = RequestMethod.PUT)
+    public ResponseEntity<Client> updateClient(@PathVariable int clientId, @RequestBody Client client){
+        Client updatedClient = clientService.updateClient(clientId, client);
         return new ResponseEntity<>(updatedClient, HttpStatus.OK);
     }
 
@@ -64,9 +65,9 @@ public class ClientController {
         return new ResponseEntity<>(newClient, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/clientDetails/{client_id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteClient(@PathVariable int client_id){
-        clientService.deleteClient(client_id);
+    @RequestMapping(value = "/clientDetails/{clientId}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteClient(@PathVariable int clientId){
+        clientService.deleteClient(clientId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 

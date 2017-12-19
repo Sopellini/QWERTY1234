@@ -1,9 +1,6 @@
 package com.insurance.InsuranceApp.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
@@ -16,12 +13,13 @@ public class Client implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clientSequence")
     @SequenceGenerator(name="clientSequence", sequenceName = "client_seq")
-    public int client_id;
-    public String name;
-    public String name2;
-    public String surname;
-    public Date dob;
-    public Long pesel;
+    @Column(name = "client_id")
+    private int clientId;
+    private String name;
+    private String name2;
+    private String surname;
+    private Date dob;
+    private Long pesel;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id")
@@ -29,8 +27,8 @@ public class Client implements Serializable{
 
     public Client(){}
 
-    public Client(int client_id, String name, String name2, String surname, Date dob, Long pesel, Contact contact){
-        this.client_id = client_id;
+    public Client(int clientId, String name, String name2, String surname, Date dob, Long pesel, Contact contact){
+        this.clientId = clientId;
         this.name = name;
         this.name2 = name2;
         this.surname = surname;
@@ -40,11 +38,11 @@ public class Client implements Serializable{
     }
 
     public int getClientId() {
-        return client_id;
+        return clientId;
     }
 
-    public void setClientId(int client_id) {
-        this.client_id = client_id;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public String getName() {
@@ -98,7 +96,7 @@ public class Client implements Serializable{
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Client{");
-        sb.append("client_id=").append(client_id);
+        sb.append("clientId=").append(clientId);
         sb.append(", name='").append(name).append('\'');
         sb.append(", name2='").append(name2).append('\'');
         sb.append(", surname='").append(surname).append('\'');
@@ -114,7 +112,7 @@ public class Client implements Serializable{
         if (this == o) return true;
         if (!(o instanceof Client)) return false;
         Client client = (Client) o;
-        return client_id == client.client_id &&
+        return getClientId() == client.getClientId() &&
                 Objects.equals(getName(), client.getName()) &&
                 Objects.equals(getName2(), client.getName2()) &&
                 Objects.equals(getSurname(), client.getSurname()) &&
@@ -125,6 +123,6 @@ public class Client implements Serializable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(client_id, getName(), getName2(), getSurname(), getDob(), getPesel(), getContact());
+        return Objects.hash(getClientId(), getName(), getName2(), getSurname(), getDob(), getPesel(), getContact());
     }
 }

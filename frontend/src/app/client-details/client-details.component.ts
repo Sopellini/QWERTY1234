@@ -24,7 +24,7 @@ export class ClientDetailsComponent implements OnInit{
 
   ngOnInit(): void{
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.clientService.getClient(+params.get('client_id')))
+      .switchMap((params: ParamMap) => this.clientService.getClient(+params.get('clientId')))
       .subscribe(client => this.client = client);
   }
 
@@ -38,7 +38,7 @@ export class ClientDetailsComponent implements OnInit{
   }
 
   deleteClient(): void {
-    this.clientService.deleteClient(this.client.client_id)
+    this.clientService.deleteClient(this.client.clientId)
       .then(() => this.goBack());
   }
 

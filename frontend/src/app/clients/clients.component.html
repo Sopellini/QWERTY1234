@@ -1,8 +1,8 @@
 <h2>Klienci</h2>
 
 <ul class="clients">
-  <li *ngFor="let client of clients" [routerLink]="['/clientDetails', client.client_id]">
-    <span class="badge">{{client.client_id}}</span> {{client.name}} {{client.surname}}
+  <li *ngFor="let client of clients" [routerLink]="['/clientDetails', client.clientId]">
+    <span class="badge">{{client.clientId}}</span> {{client.name}} {{client.surname}}
   </li>
 </ul>
 
